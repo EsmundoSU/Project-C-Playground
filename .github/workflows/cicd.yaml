@@ -1,0 +1,24 @@
+# Workflow name
+name: Project CI/CD
+# Events for this workflow
+on: [ push, pull_request ]
+
+jobs:
+  # Build project files
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
+
+    steps:
+      - name: Checkout this repository.
+        uses: actions/checkout@v2
+
+      - name: CMAKE creates build files.
+        run: |
+          mkdir out
+          cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
+
+      - name: CMAKE build project.
+        run: cmake --build ./out/
