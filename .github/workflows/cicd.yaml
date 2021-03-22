@@ -21,4 +21,4 @@ jobs:
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
       - name: CMAKE build project.
-        run: cmake --build ./out/
+        run: cmake --build ./out/ --config Release
