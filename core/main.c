@@ -1,5 +1,9 @@
 #include <stdio.h>
+#include "example1.h"
+
+const char TestText1[] = "Hello World! APE\nWhere is my mind\n";
 
 int main() {
-    puts("Hello World! APE");
+    size_t indexOfNewLine = NewLineIndex(TestText1, sizeof TestText1);
+    printf("indexOfNewLine - TestText1 is: %d", indexOfNewLine);
 }
