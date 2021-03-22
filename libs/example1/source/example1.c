@@ -1,5 +1,5 @@
 #include "example1.h"
-#include <limits.h>
+#include <stdint.h>
 
 size_t NewLineIndex(const char *buffer, size_t bufferSize) {
     for (size_t index = 0; index < bufferSize; index++) {
