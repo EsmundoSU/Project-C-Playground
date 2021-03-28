@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
+        compiler: [ gcc, clang ]
 
     steps:
       - name: Checkout this repository.
