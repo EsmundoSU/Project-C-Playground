@@ -1,5 +1,4 @@
 # Based on (credits): https://github.com/lefticus/cpp_starter_project/blob/master/cmake/CompilerWarnings.cmake
-
 function(set_project_warnings project_name)
 	########################################################################################################################
 	# Options settings
@@ -9,7 +8,6 @@ function(set_project_warnings project_name)
 	# MSVC Warnings
 	########################################################################################################################
 	# Remove /W3 warning override
-	message(STATUS ${CMAKE_C_FLAGS})
 	string(REGEX REPLACE "/W[3|4]" "/w" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 
 	# C warnings
