@@ -11,16 +11,19 @@ jobs:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
         compiler: [ gcc, clang ]
+        include:
+      fail-fast: false
 
     steps:
       - name: Checkout this repository.
         uses: actions/checkout@v2
 
-      - name: CMAKE creates build files.
+      - name: CMAKE (GCC) creates build files.
         env:
           CC: ${{ matrix.compiler }}
           CXX: ${{ matrix.compiler }}
         run: |
+          echo "CC:\t $CC \t and CXX:\t $CXX\t"
           mkdir out
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
