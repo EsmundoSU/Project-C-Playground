@@ -19,13 +19,14 @@ jobs:
       - name: Prepare Windows tools - set up MinGW.
         if: ${{ matrix.os == 'windows-latest' }}
         uses: egor-tensin/setup-mingw@v2
+        with:
+          cc: 1
 
       - name: CMAKE creates build files.
         env:
           CC: gcc
           CXX: g++
         run: |
-          echo "CC: $CC and CXX: $CXX"
           mkdir out
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
