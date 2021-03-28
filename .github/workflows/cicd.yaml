@@ -6,7 +6,8 @@ on: [ push, pull_request ]
 jobs:
   # Build project files
   build:
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
     strategy:
       matrix:
         config:
