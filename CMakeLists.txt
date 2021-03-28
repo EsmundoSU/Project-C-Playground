@@ -11,10 +11,11 @@ project(playground C CXX)
 # Compiler
 ########################################################################################################################
 # Compiler warnings - Link this 'library' to use the warnings specified in CompilerWarnings.cmake
-add_library(project_warnings INTERFACE)
 include(scripts/cmake/CompilerWarnings.cmake)
-set_project_warnings(project_warnings)
 include(scripts/cmake/CompilerInfo.cmake)
+add_library(project_warnings INTERFACE)
+set_project_warnings(project_warnings)
+set(CMAKE_C_STANDARD 99)
 ########################################################################################################################
 
 ########################################################################################################################
