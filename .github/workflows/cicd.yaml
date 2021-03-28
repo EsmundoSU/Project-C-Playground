@@ -9,19 +9,38 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ windows-latest, ubuntu-latest, macos-latest ]
+        config:
+          - {
+            name: "Windows Latest - GCC", artifact: "windows-gcc.tar.xz",
+            os: windows-latest,
+            cc: "gcc-9", cxx: "g++-9",
+          }
+          - {
+            name: "Ubuntu Latest - GCC", artifact: "linux-gcc.tar.xz",
+            os: ubuntu-latest,
+            cc: "gcc-9", cxx: "g++-9"
+          }
+          - {
+            name: "Ubuntu Latest - GCC", artifact: "linux-gcc.tar.xz",
+            os: ubuntu-latest,
+            cc: "gcc-9", cxx: "g++-9"
+          }
       fail-fast: false
 
     steps:
       - name: Checkout this repository.
         uses: actions/checkout@v2
 
+      - name: "Install NINJA"
+        uses: seanmiddleditch/gha-setup-ninja@master
+
       - name: CMAKE creates build files.
         run: |
           mkdir out
           gcc --version
           g++ --version
-          cmake -S . -B ./out/ -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc.exe -D CMAKE_CXX_COMPILER=g++.exe
+          echo %gcc%
+          cmake -S . -B ./out/ -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }}
 
       - name: CMAKE build project.
         run: cmake --build ./out/ --config Release
