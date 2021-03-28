@@ -29,6 +29,11 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: Clang Format - Checker
+        uses: RafikFarhad/clang-format-github-action@v1
+        with:
+          sources: "core/**/*.c,core/**/*.h,libs/**/*.c,libs/**/*.h"
+
       - name: Checkout this repository.
         uses: actions/checkout@v2
 
