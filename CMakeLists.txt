@@ -13,6 +13,7 @@ project(playground C CXX)
 add_library(project_warnings INTERFACE)
 include(scripts/cmake/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
+include(scripts/cmake/CompilerInfo.cmake)
 ########################################################################################################################
 
 ########################################################################################################################

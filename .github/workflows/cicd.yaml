@@ -17,6 +17,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: CMAKE creates build files.
+        env:
+          CC: ${{ matrix.compiler }}
+          CXX: ${{ matrix.compiler }}
         run: |
           mkdir out
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
