@@ -12,18 +12,18 @@ jobs:
       matrix:
         config:
           - {
-            name: "Windows Latest - GCC", artifact: "windows-gcc.tar.xz",
+            name: "Build and Test - Windows GCC", artifact: "windows-gcc.tar.xz",
             os: windows-latest,
             cc: "gcc", cxx: "g++",
           }
           - {
-            name: "Ubuntu Latest - GCC", artifact: "linux-gcc.tar.xz",
+            name: "Build and Test - Ubuntu GCC", artifact: "linux-gcc.tar.xz",
             os: ubuntu-latest,
             cc: "gcc-9", cxx: "g++-9"
           }
           - {
-            name: "Ubuntu Latest - GCC", artifact: "linux-gcc.tar.xz",
-            os: ubuntu-latest,
+            name: "Build and Test - MacOS GCC", artifact: "macos-gcc.tar.xz",
+            os: macos-latest,
             cc: "gcc-9", cxx: "g++-9"
           }
       fail-fast: false
@@ -44,4 +44,4 @@ jobs:
         run: cmake --build ./out/ --config Release
 
       - name: Unit tests - Google Tests
-        run: ./out/tests/google-test/Google_Tests_run.exe
+        run: ./out/tests/google-test/Google_Tests_run
