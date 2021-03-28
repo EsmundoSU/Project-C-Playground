@@ -47,4 +47,4 @@ jobs:
         run: ls -l ./out/tests/google-test/
 
       - name: Unit tests - Google Tests
-        run: ./out/tests/google-test/Google_Tests_run.exe
+        run: ./out/tests/google-test/Google_Tests_run
