@@ -18,13 +18,24 @@ jobs:
         uses: actions/checkout@v2
 
       - name: CMAKE (GCC) creates build files.
+        if: ${{ matrix.compiler == gcc }}
         env:
           CC: ${{ matrix.compiler }}
-          CXX: ${{ matrix.compiler }}
+          CXX: g++
         run: |
           echo "CC:\t $CC \t and CXX:\t $CXX\t"
           mkdir out
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
+
+      - name: CMAKE (CLANG) creates build files.
+        if: ${{ matrix.compiler == clang }}
+        env:
+          CC: ${{ matrix.compiler }}
+          CXX: clang++
+          run: |
+            echo "CC:\t $CC \t and CXX:\t $CXX\t"
+            mkdir out
+            cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
       - name: CMAKE build project.
         run: cmake --build ./out/ --config Release
