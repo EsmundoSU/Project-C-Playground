@@ -16,26 +16,12 @@ jobs:
       - name: Checkout this repository.
         uses: actions/checkout@v2
 
-      - name: Prepare Windows tools - set up MinGW.
-        if: ${{ matrix.os == 'windows-latest' }}
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          cc: 1
-
       - name: CMAKE creates build files.
         run: |
           mkdir out
+          gcc --version
+          g++ --version
           cmake -S . -B ./out/ -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++
-
-      - name: CMAKE (CLANG) creates build files.
-        if: ${{ matrix.compiler == 'clang' }}
-        env:
-          CC: ${{ matrix.compiler }}
-          CXX: clang++
-        run: |
-          echo "CC:\t $CC \t and CXX:\t $CXX\t"
-          mkdir out
-          cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
       - name: CMAKE build project.
         run: cmake --build ./out/ --config Release
