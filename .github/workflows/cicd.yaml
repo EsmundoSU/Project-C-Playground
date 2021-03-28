@@ -22,8 +22,8 @@ jobs:
             cc: "gcc-9", cxx: "g++-9"
           }
           - {
-            name: "Ubuntu Latest - GCC", artifact: "linux-gcc.tar.xz",
-            os: ubuntu-latest,
+            name: "MacOS Latest - GCC", artifact: "macos-gcc.tar.xz",
+            os: macos-latest,
             cc: "gcc-9", cxx: "g++-9"
           }
       fail-fast: false
@@ -38,11 +38,12 @@ jobs:
       - name: CMAKE creates build files.
         run: |
           mkdir out
-          tree -d
           cmake -S . -B ./out/ -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }}
 
       - name: CMAKE build project.
-        run: cmake --build ./out/ --config Release
+        run: |
+          cmake --build ./out/ --config Release
+          tree -d
 
       - name: Unit tests - Google Tests
         run: ./out/tests/google-test/Google_Tests_run.exe
