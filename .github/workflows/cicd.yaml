@@ -23,12 +23,9 @@ jobs:
           cc: 1
 
       - name: CMAKE creates build files.
-        env:
-          CC: gcc
-          CXX: g++
         run: |
           mkdir out
-          cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B ./out/ -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc- -D CMAKE_CXX_COMPILER=g++-4.2
 
       - name: CMAKE (CLANG) creates build files.
         if: ${{ matrix.compiler == 'clang' }}
