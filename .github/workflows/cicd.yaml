@@ -10,20 +10,22 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
-        compiler: [ gcc, clang ]
       fail-fast: false
 
     steps:
       - name: Checkout this repository.
         uses: actions/checkout@v2
 
-      - name: CMAKE (GCC) creates build files.
-        if: ${{ matrix.compiler == 'gcc' }}
+      - name: Prepare Windows tools - set up MinGW.
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: egor-tensin/setup-mingw@v2
+
+      - name: CMAKE creates build files.
         env:
-          CC: ${{ matrix.compiler }}
+          CC: gcc
           CXX: g++
         run: |
-          echo "CC:\t $CC \t and CXX:\t $CXX\t"
+          echo "CC: $CC and CXX: $CXX"
           mkdir out
           cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
