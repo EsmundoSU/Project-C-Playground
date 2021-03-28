@@ -42,3 +42,6 @@ jobs:
 
       - name: CMAKE build project.
         run: cmake --build ./out/ --config Release
+
+      - name: Unit tests - Google Tests
+        run: ./out/tests/google-test/Google_Tests_run.exe
