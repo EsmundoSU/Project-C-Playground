@@ -32,10 +32,10 @@ jobs:
         env:
           CC: ${{ matrix.compiler }}
           CXX: clang++
-          run: |
-            echo "CC:\t $CC \t and CXX:\t $CXX\t"
-            mkdir out
-            cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
+        run: |
+          echo "CC:\t $CC \t and CXX:\t $CXX\t"
+          mkdir out
+          cmake -S . -B ./out/ -DCMAKE_BUILD_TYPE=Release
 
       - name: CMAKE build project.
         run: cmake --build ./out/ --config Release
